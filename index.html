@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A-Frame Scene with Physics</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
+    <script src="https://unpkg.com/super-hands@3.0.0/dist/super-hands.min.js"></script>
+    <script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
+</head>
+<body>
+    <a-scene physics="debug: true">
+        <a-entity id="dir-light" light="type: directional; color: #dfebff; intensity: 1" position="50 200 100"></a-entity>
+        <a-entity light="type: ambient; color: #666666"></a-entity>
+
+        <!-- Ground Plane with Static Body -->
+        <a-plane material="color: gray" width="50" height="50" rotation="-90 0 0" static-body></a-plane>
+        
+        <!-- Dynamic Sphere (will fall and collide) -->
+        <a-sphere dynamic-body position="-2 2 -5" material="color: yellow" radius="0.5"></a-sphere>
+
+        <!-- Grabbable Dynamic Box -->
+        <a-entity dynamic-body grabbable mixin="cube" position="0 1 -2" material="color: blue" geometry="primitive: box; width: 0.2; height: 0.2; depth: 0.2"></a-entity>
+
+        <!-- Sky -->
+        <a-sky color="#87CEEB"></a-sky>
+
+        <!-- VR Controllers -->
+        <a-entity oculus-touch-controls="hand: left" super-hands></a-entity>
+        <a-entity oculus-touch-controls="hand: right" super-hands></a-entity>
+    </a-scene>
+</body>
+</html>
